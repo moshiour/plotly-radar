@@ -1,0 +1,92 @@
+{% extends "bootstrap/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="ISO-8859-1" >
+    <title>Flask Vib app</title>
+  </head>
+  <body>
+
+<link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.1/journal/bootstrap.min.css" rel="stylesheet">
+<link href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.15.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+{% block title %}
+Flask, Bokeh, MathJax example
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.15.min.css" type="text/css"/>
+{% endblock%}
+
+<!--
+{% block navbar %}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="http://0.0.0.0:8080/">MaterialsDesign</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="http://0.0.0.0:8080/">Home</a></li>
+      <li><a href="/myview/">Page 1</a></li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+-->
+
+
+
+{% block content %}
+<div class="container bg-muted" style="padding:0px; background-color:white">
+
+<div class="tab-content" style="margin-left:15px">
+
+<div class="alert alert-success" role="alert">
+
+<! --<p>
+<!-- Input and Results are typeset as a two-column table -->
+<table>
+<tr>
+<td valign="top">
+<h2>Input Parameters:</h2>
+Plot Wave  function
+<form method="POST" action="">
+<div class="form-group">
+<table cellspacing="30">
+  {% for field in form %}
+    <tr>
+      <td class="bg-success">
+      <td>{{ field.label }}</td>
+      <td>{{ field(size=20) }}</td>
+      <td>
+      {% if field.errors %}
+        <ul class=errors>
+        {% for error in field.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}</ul>
+      {% endif %}
+      </td></tr>
+  {% endfor %}
+</table>
+<p>
+<!--<button type="submit" class="btn btn-primary btn-lg">Compute</button>
+        <!--<input type=submit value=Compute>-->
+<input type="submit" value="Compute">
+</p>
+</form>
+</td>
+<td valign="top">
+   <h2>Results:</h2>
+        <div align="left">
+             {{ div_placeholder }}
+        </div>
+<!-- Use a span to show the results -->
+</td></tr>
+</table>
+</body>
+</html>
+{% endblock %}
